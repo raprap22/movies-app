@@ -38,7 +38,7 @@ class Search extends Component {
 
     render() {
         return (
-            <FormGroup className="mx-auto p-3" >
+            <FormGroup>
                 <Row>
                     <Col>
                         <FormControl type="text" className="form-control mr-sm-2 w-auto" placeholder="Search" onChange={(event) => this.setState({ query: event.target.value })} />{" "}

@@ -1,8 +1,10 @@
 import React from 'react'
 import {
     Card,
+    Button,
     Badge
 } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
 class Item extends React.Component {
@@ -12,10 +14,16 @@ class Item extends React.Component {
 
         str = str.substring(0, lastStr);
         var lastWord = str.split("/").pop()
-        console.log("id :", lastWord);
+        var category = this.props.item.title != null ? "films" : "people";
+        var data = {
+            id: lastWord,
+            category: category
+        }
+        console.log("data nih :", data );
         return (
-            <Card style={{ width: '18rem', margin: '20px' }} className="mx-auto">
-                <Card.Img variant='top' src='https://via.placeholder.com/150' />
+            
+            <Card style={{ width: '18rem', margin: '20px', borderRadius: '20px'}} className="mx-auto">
+                <Card.Img variant='top' src='https://via.placeholder.com/150' style={{borderRadius: '20px'}}/>
                 <Card.Body>
                     <Card.Title>
                         {this.props.item.title || this.props.item.name} <hr />
@@ -26,6 +34,9 @@ class Item extends React.Component {
                     <Card.Text>
                         <label>{this.props.item.opening_crawl == null ? "Gender:" : ""} {this.props.item.opening_crawl || this.props.item.gender}</label>
                     </Card.Text>
+                    <Link to={`/detail/${lastWord}`} state={data}>
+                    <Button variant="success">{this.props.item.title != null ? "Explore This Film !!" : "Check This Character"}</Button>
+                    </Link >
                 </Card.Body>
             </Card>
         )
